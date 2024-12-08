@@ -1,19 +1,26 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.font_manager
+
+# Load custom TTF font
+braille_font_path = "Braille29.ttf"
+braille_font = matplotlib.font_manager.FontProperties(fname=braille_font_path)
+matplotlib.font_manager.fontManager.addfont(path=braille_font_path)
 
 def set_default_styles(plt):
     """
     Set default matplotlib parameters for font sizes and other plot aesthetics.
     """
     plt.rcParams.update({
-        'svg.fonttype': "none",
-        'font.size': 30,           # Set global font size for readability
-        'axes.titlesize': 30,      # Title font size
-        'axes.labelsize': 30,      # Axis label font size
-        'xtick.labelsize': 30,     # X-axis tick font size
-        'ytick.labelsize': 30,     # Y-axis tick font size
-        'legend.fontsize': 30      # Legend font size
+#        'svg.fonttype': "none",
+        'font.family': braille_font.get_name(),
+        'font.size': 32,           # Set global font size for readability
+        'axes.titlesize': 32,      # Title font size
+        'axes.labelsize': 32,      # Axis label font size
+        'xtick.labelsize': 32,     # X-axis tick font size
+        'ytick.labelsize': 32,     # Y-axis tick font size
+        'legend.fontsize': 32      # Legend font size
     })
 
 def configure_axes(ax):
@@ -54,23 +61,28 @@ def line_style_dashed2():
 
 def marker_style_circle():
     """ Return parameters for a circular marker style suitable for Braille printing. """
-    return {'marker': 'o', 'markersize': 10,"linestyle":""}  # ~3-4 mm size
+    return {'marker': 'o', 'markersize': 15,"linestyle":"","color":"k"}  # ~3-4 mm size
 
 def marker_style_square():
     """ Return parameters for a square marker style suitable for Braille printing. """
-    return {'marker': 's', 'markersize': 10, "linestyle":""}  # ~3-4 mm size
+    return {'marker': 's', 'markersize': 15, "linestyle":"","color":"k"}  # ~3-4 mm size
 
 def marker_style_triangle_up():
     """ Return parameters for an upward-pointing triangle marker style. """
-    return {'marker': '^', 'markersize': 10, "linestyle": ""}  # ~3-4 mm size
+    return {'marker': '^', 'markersize': 15, "linestyle": "","color":"k"}  # ~3-4 mm size
 
 def marker_style_diamond():
     """ Return parameters for a diamond marker style suitable for Braille printing. """
-    return {'marker': 'D', 'markersize': 10,"linestyle": ""}  # ~3-4 mm size
+    return {'marker': 'D', 'markersize': 15,"linestyle": "", "color":"k"}  # ~3-4 mm size
 
 
 def figure(plt, title=""):
-        fig, ax = plt.subplots(figsize=(12,10))
+        fig, ax = plt.subplots(figsize=(13,10))
         configure_axes(ax)
         ax.set_title(title, loc="left", pad=30)
         return fig, ax
+
+def legend(ax, fig):
+    ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    fig.tight_layout()
+
