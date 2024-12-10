@@ -15,7 +15,7 @@ ax.plot(x, -x, **bp.line_style_dotted(), label="l 3")
 ax.plot(x, -x + 1.5, **bp.line_style_dashed(), label="l 4")
 ax.plot(x, [0] * len(x), **bp.line_style_dashed2(), label="l 5")
 bp.legend(ax,fig)
-plt.savefig("braille_demo_lines.svg")
+plt.savefig("braille_demo_lines.png")
 plt.clf()
 
 fig, ax = bp.figure(plt,title="eample plot")
